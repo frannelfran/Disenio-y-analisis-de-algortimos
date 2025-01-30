@@ -1,25 +1,21 @@
 #include "multiplicacion.h"
 
+
 /**
- * @overload Sobrecarga del operador <<
+ * @brief Función que realiza la multiplicación de matrices por filas
+ * @return Matriz resultante de la multiplicación
 */
 
-ostream& operator<<(ostream& os, Multiplicacion& m) {
-  // Muestro la primera matriz
-  os << "--- Matriz 1 ---" << endl;
-  for (int i = 0; i < m.matriz1_.size(); i++) {
-    for (int j = 0; j < m.matriz1_[i].size(); j++) {
-      os << m.matriz1_[i][j] << " ";
+const vector<vector<int>> MultiplicacionFilas::multiplicar() {
+  // Creo la matriz resultante
+  vector<vector<int>> matriz_resultante(matriz1_.size(), vector<int>(matriz2_[0].size()));
+  // Realizo la multiplicación
+  for (int i = 0; i < matriz1_.size(); i++) {
+    for (int j = 0; j < matriz2_[0].size(); j++) {
+      for (int k = 0; k < matriz1_[0].size(); k++) {
+        matriz_resultante[i][j] += matriz1_[i][k] * matriz2_[k][j];
+      }
     }
-    os << endl;
   }
-  // Muestro la segunda matriz
-  os << "--- Matriz 2 ---" << endl;
-  for (int i = 0; i < m.matriz2_.size(); i++) {
-    for (int j = 0; j < m.matriz2_[i].size(); j++) {
-      os << m.matriz2_[i][j] << " ";
-    }
-    os << endl;
-  }
-  return os;
+  return matriz_resultante;
 }
