@@ -21,7 +21,7 @@ class Multiplicacion {
 };
 
 /**
- * @class Clase que implementa la multiplicación de matrices por columnas
+ * @class Clase que implementa la multiplicación de matrices por filas
 */
 
 class MultiplicacionFilas : public Multiplicacion {
