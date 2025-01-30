@@ -22,3 +22,17 @@ vector<vector<int>> generarMatriz(int filas, int columnas) {
   }
   return matriz;
 }
+
+/**
+ * @brief Función que muestra una matriz
+ * @param matriz Matriz a mostrar
+*/
+
+void mostrarMatriz(const vector<vector<int>>& matriz) {
+  for (int i = 0; i < matriz.size(); i++) {
+    for (int j = 0; j < matriz[i].size(); j++) {
+      cout << matriz[i][j] << " ";
+    }
+    cout << endl;
+  }
+}
