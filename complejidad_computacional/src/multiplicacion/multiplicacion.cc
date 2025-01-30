@@ -1,6 +1,5 @@
 #include "multiplicacion.h"
 
-
 /**
  * @brief Función que realiza la multiplicación de matrices por filas
  * @return Matriz resultante de la multiplicación
