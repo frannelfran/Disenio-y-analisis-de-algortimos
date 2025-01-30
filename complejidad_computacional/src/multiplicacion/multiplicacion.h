@@ -43,5 +43,5 @@ class MultiplicacionColumnas : public Multiplicacion {
     MultiplicacionColumnas(const vector<vector<int>>& matriz1, const vector<vector<int>>& matriz2) : Multiplicacion(matriz1, matriz2) {}
 
     // Función para multiplicar las matrices por columnas
-    const vector<vector<int>> multiplicar() override {}
+    const vector<vector<int>> multiplicar() override;
 };
