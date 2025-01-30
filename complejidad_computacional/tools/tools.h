@@ -4,5 +4,5 @@
 
 using namespace std;
 
-vector<vector<int>> generarMatriz(int filas, int columnas); // Generar matrices con números aleatorios
+vector<vector<int>> generarMatriz(int columnas, int filas); // Generar matrices con números aleatorios
 void mostrarMatriz(const vector<vector<int>>& matriz); // Mostrar matrices

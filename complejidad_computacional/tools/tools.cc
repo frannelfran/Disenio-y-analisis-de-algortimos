@@ -7,7 +7,7 @@
  * @return Matriz de números aleatorios
 */
 
-vector<vector<int>> generarMatriz(int filas, int columnas) {
+vector<vector<int>> generarMatriz(int columnas, int filas) {
   // Creo la matris
   vector<vector<int>> matriz(filas, vector<int>(columnas));
   // Para que los números sean aleatorios
