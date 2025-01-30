@@ -19,6 +19,13 @@ Tools leerDatos(int argc, char* argv[]) {
   // Leer los datos de la matriz 2
   datos.columnas2 = atoi(argv[3]);
   datos.filas2 = atoi(argv[4]);
+
+  // Compruebo que las matrices sean multiplicables
+  if (datos.columnas1 != datos.filas2) {
+    cout << "Las columnas de la primera matriz no coinciden con las filas de la segunda matriz: " 
+         << datos.columnas1 << " != " << datos.filas2 << endl;
+    exit(1);
+  }
   return datos;
 }
 
