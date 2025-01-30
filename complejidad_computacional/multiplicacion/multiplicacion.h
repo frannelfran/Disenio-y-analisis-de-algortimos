@@ -33,3 +33,16 @@ class MultiplicacionFilas : public Multiplicacion {
     // Función para multiplicar las matrices por filas
     const vector<vector<int>> multiplicar() override;
 };
+
+/**
+ * @class Clase que implementa la multiplicación de matrices por columnas
+*/
+
+class MultiplicacionColumnas : public Multiplicacion {
+  public:
+    // Constructor
+    MultiplicacionColumnas(const vector<vector<int>>& matriz1, const vector<vector<int>>& matriz2) : Multiplicacion(matriz1, matriz2) {}
+
+    // Función para multiplicar las matrices por columnas
+    const vector<vector<int>> multiplicar() override;
+};
