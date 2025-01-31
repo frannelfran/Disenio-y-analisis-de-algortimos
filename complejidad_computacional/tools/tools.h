@@ -5,12 +5,7 @@
 using namespace std;
 
 struct Tools {
-  // Filas y columnas de la matriz 1
-  int filas1;
-  int columnas1;
-  // Filas y columnas de la matriz 2
-  int filas2;
-  int columnas2;
+  string filename;
 };
 
 vector<vector<int>> generarMatriz(int columnas, int filas); // Generar matrices con números aleatorios

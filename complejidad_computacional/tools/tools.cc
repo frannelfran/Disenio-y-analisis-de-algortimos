@@ -9,23 +9,11 @@
 
 Tools leerDatos(int argc, char* argv[]) {
   Tools datos;
-  if (argc != 5) {
-    cout << "Modo de uso: " << argv[0] << " <columnas1> <filas1> <columnas2> <filas2>" << endl;
+  if (argc != 2) {
+    cout << "Modo de uso: " << argv[0] << " <fichero_salida" << endl;
     exit(1);
   }
-  // Leer los datos de la matriz 1
-  datos.columnas1 = atoi(argv[1]);
-  datos.filas1 = atoi(argv[2]);
-  // Leer los datos de la matriz 2
-  datos.columnas2 = atoi(argv[3]);
-  datos.filas2 = atoi(argv[4]);
-
-  // Compruebo que las matrices sean multiplicables
-  if (datos.columnas1 != datos.filas2) {
-    cout << "Las columnas de la primera matriz no coinciden con las filas de la segunda matriz: " 
-         << datos.columnas1 << " != " << datos.filas2 << endl;
-    exit(1);
-  }
+  datos.filename = argv[1];
   return datos;
 }
 
