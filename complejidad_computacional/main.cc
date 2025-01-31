@@ -1,6 +1,8 @@
 #include "src/multiplicacion/multiplicacion.h"
 #include "tools/tools.h"
 #include "chrono" // Para medir el tiempo de ejecución de las multiplicaciones
+#include <fstream> // Para escribir en ficheros
+#include <iomanip> // Para dar formato a la salida
 
 /**
  * @author Franco Alla
@@ -10,39 +12,49 @@
 
 int main(int argc, char* argv[]) {
   Tools datos = leerDatos(argc, argv);
-  // Genero las matrices con los datos de entrada
-  vector<vector<int>> matriz1 = generarMatriz(datos.columnas1, datos.filas1);
-  vector<vector<int>> matriz2 = generarMatriz(datos.columnas2, datos.filas2);
+  int rango; // Dimension máxima de las matrices
+  ofstream fichero_salida(datos.filename);
 
-  // Creo los objetos de las clases
-  Multiplicacion* multi_filas = new MultiplicacionFilas(matriz1, matriz2);
-  Multiplicacion* multi_columnas = new MultiplicacionColumnas(matriz1, matriz2);
+  fichero_salida << "Tamaño matriz resultante;Tiempo por filas;Tiempo por columnas" << endl;
 
-  // Calculo el tiempo de ejecución de la multiplicación por filas
-  auto start = chrono::high_resolution_clock::now();
-  vector<vector<int>> resultado_filas = multi_filas->multiplicar();
-  auto end = chrono::high_resolution_clock::now();
-  auto duracion_filas = chrono::duration_cast<chrono::microseconds>(end - start);
-
-  // Calculo el tiempo de ejecución de la multiplicación por columnas
-  start = chrono::high_resolution_clock::now();
-  vector<vector<int>> resultado_columnas = multi_columnas->multiplicar();
-  end = chrono::high_resolution_clock::now();
-  auto duracion_columnas = chrono::duration_cast<chrono::microseconds>(end - start);
-
-  // Muestro los resultados
-  cout << "--- Matriz 1 ---" << endl;
-  mostrarMatriz(matriz1);
-  cout << "--- Matriz 2 ---" << endl;
-  mostrarMatriz(matriz2);
-  cout << "--- Resultado multiplicación por filas ---" << endl;
-  mostrarMatriz(resultado_filas);
-  cout << "--- Resultado multiplicación por columnas ---" << endl;
-  mostrarMatriz(resultado_columnas);
-  cout << "Tiempo de ejecución multiplicación por filas: " << duracion_filas.count() << " microsegundos" << endl;
-  cout << "Tiempo de ejecución multiplicación por columnas: " << duracion_columnas.count() << " microsegundos" << endl;
-  delete multi_filas;
-  delete multi_columnas;
+  // Datos para la primera matriz
+  cout << "Introducir un un tamaño para las matrices (1-100) (0 para salir): ";
+  cin >> rango;
   
+  if (rango < 1 || rango > 100) {
+    if (rango == 0) {
+      return 0;
+    }
+    cout << "El rango debe estar entre 1 y 100" << endl;
+    return 1;
+  }
+
+  for (int i = 2; i <= rango; i++) {
+    // Genero las matrices
+    vector<vector<int>> matriz1 = generarMatriz(i, i);
+    vector<vector<int>> matriz2 = generarMatriz(i, i);
+
+    // Multiplicación por filas
+    Multiplicacion* multi_filas = new MultiplicacionFilas(matriz1, matriz2);
+    auto start = chrono::high_resolution_clock::now();
+    vector<vector<int>> matriz_resultante_filas = multi_filas->multiplicar();
+    auto end = chrono::high_resolution_clock::now();
+    chrono::duration<double> tiempo_filas = end - start;
+
+    // Mutliplicacion por columnas
+    Multiplicacion* multi_columnas = new MultiplicacionColumnas(matriz1, matriz2);
+    start = chrono::high_resolution_clock::now();
+    vector<vector<int>> matriz_resultante_columnas = multi_columnas->multiplicar();
+    end = chrono::high_resolution_clock::now();
+    chrono::duration<double> tiempo_columnas = end - start;
+
+    // Muestro los resultados por pantalla
+    fichero_salida << i << "x" << i << ";" << fixed << setprecision(10) << tiempo_filas.count() << ";" 
+                   << tiempo_columnas.count() << endl;
+
+    delete multi_filas;
+    delete multi_columnas;
+  }
+
   return 0;
 }
