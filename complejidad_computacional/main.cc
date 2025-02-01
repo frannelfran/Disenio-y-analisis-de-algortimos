@@ -1,5 +1,5 @@
 #include "src/multiplicacion/multiplicacion.h"
-#include "tools/tools.h"
+#include "src/tools/tools.h"
 #include "chrono" // Para medir el tiempo de ejecución de las multiplicaciones
 #include <fstream> // Para escribir en ficheros
 #include <iomanip> // Para dar formato a la salida
